@@ -1,0 +1,293 @@
+body {
+    background-color: #9A7EA6;
+    margin: 0;
+}
+
+#activityList {
+    justify-content: center;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#slideLeft {
+    position: absolute;
+    top: 190px;
+    left: 410px;
+    display: block;
+    height: 390px;
+    width: 112px;
+}
+
+#slideRight {
+    position: absolute;
+    top: 190px;
+    right: 410px;
+    display: block;
+    z-index: -1;
+    height: 390px;
+    width: 112px;
+}
+
+.activity {
+    background: linear-gradient(90deg, #e9ce9d, #F8B2A1);
+    width: 500px;
+    height: 490px;
+}
+
+.activityButtons {
+    position: absolute;
+    top: 500px;
+    left: 340px;
+    display: flex;
+}
+
+.activityButtons button{
+    height: 50px;
+    width: 50px;
+    position: relative;
+}
+
+.activity p {
+    font-family: 'Brush Script MT', cursive;
+    color: #9c4a1a;
+}
+
+.activityName{
+    text-align: center;
+}
+
+.activityName input{
+    font-family: 'Brush Script MT', cursive;
+    color: #9c4a1a;
+    font-size: 30px;
+    text-align: center;
+}
+
+.dateTime{
+    text-align: center;
+    font-size: 20px;
+}
+
+.startDateTime {
+    width: 90px;
+    align-items: end;
+    flex-flow: column;
+}
+
+.dateTime input::-webkit-inner-spin-button,
+.dateTime input::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.endDateTime {
+    width: 90px;
+    align-items: end;
+    flex-flow: column;
+}
+
+.activityDesc{
+    font-family: 'Brush Script MT', cursive;
+    color: #9c4a1a;
+    font-size: 25px;
+    margin-left: 15px;
+    width: 440px;
+    height: 320px;
+}
+
+.activityWrapper {
+    display: none;
+}
+
+.mainWrapper {
+    position: absolute;
+    top: 125px;
+    display: block;
+}
+
+.leftWrapper {
+    overflow: hidden;
+    position: absolute;
+    top: 175px;
+    right: 830px;
+    display: block;
+}
+
+.leftAct {
+    height: 390px;
+    width: 290px;
+    background: linear-gradient(90deg, #c7a79f, #d07a5f);
+}
+
+.leftAct button{
+    display: none;
+}
+
+.rightWrapper {
+    overflow: hidden;
+    z-index: -1;
+    position: absolute;
+    top: 175px;
+    left: 830px;
+    display: block;
+}
+
+.rightAct {
+    height: 390px;
+    width: 290px;
+    background: linear-gradient(90deg, #ab5a40, #bf9388);
+}
+
+.rightAct button{
+    display: none;
+}
+
+.activity input, textarea {
+    font-family: 'Brush Script MT', cursive;
+    color: #9c4a1a;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+#invalidDate {
+    width: 210px;
+    height: 70px;
+    padding-top: 10px;
+    position: absolute;
+    z-index: 1;
+    left: calc(50% + 150px);
+    top: 200px;
+    border: 4px solid #42373D;
+    background-color: #543f5d;
+    border-radius: 30px;
+}
+
+#invalidDate p {
+    font-family: 'Brush Script MT', cursive;
+    color: #e8e3e3;
+    font-size: 15px;
+    text-align: center;
+}
+
+#editButtons {
+    position:absolute;
+    top: 630px;
+    left: calc(50% - 65px);
+    display: none;
+}
+
+#editButtons button {
+    height: 50px;
+    width: 50px;
+}
+
+#loadPrevious {
+    position: absolute;
+    top: 185px;
+    left: calc(50% - 555px);
+    display: flex;
+}
+
+#loadPrevious button {
+    width: 50px;
+    height: 400px;
+}
+
+#loadPrevious i {
+  border: solid #e8e3e3;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+#loadNext {
+    position: absolute;
+    top: 185px;
+    left: calc(50% + 400px);
+    display: flex;
+}
+
+#loadNext button {
+    width: 50px;
+    height: 400px;
+}
+
+#loadNext i {
+  border: solid #e8e3e3;
+  border-width: 0 7px 7px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+#displayedDate {
+    margin-top: -20px;
+    align-self: center;
+}
+
+#displayedDate p{
+    font-family: 'Brush Script MT', cursive;
+    color: #e7d69c;
+    text-shadow: -3px -2px #9c4a1a;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+#no-activities {
+    position: absolute;
+    top: calc(50% - 50px);
+}
+
+#no-activities p {
+    font-family: 'Brush Script MT', cursive;
+    color: #e7d69c;
+    text-shadow: -3px -2px #9c4a1a;
+    font-size: 45px;
+    text-align: center;
+}
+
+.activityRepetition {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+    display: flex;
+}
+
+.activityRepetition input {
+    display: inline;
+    text-align: center;
+    font-size: 18px;
+    width: 50px;
+    margin-right: -11px;
+    z-index: 2;
+    margin-left: -8px;
+}
+
+.activityRepetition i {
+    color: #9c4a1a;
+    margin-top: 5px;
+}
+
+.activityRepetition select {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: #9c4a1a;
+    width: 100%;
+    margin-left: 5px;
+    -webkit-appearance: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

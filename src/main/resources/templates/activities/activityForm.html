@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your activities</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="" th:href="@{/css/activities/activityForm.css}">
+    <link rel="stylesheet" href="" th:href="@{/css/general/navigation.css}">
+    <script type="text/javascript" th:src="@{/js/activities/activityForm.js}"></script>
+    <script src="https://kit.fontawesome.com/5be4e8ca06.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="navigation">
+    <button onclick="location.href = 'http://localhost:8080/tasks/all';" class="nbutton" role="button">All tasks</button>
+    <button onclick="location.href = 'http://localhost:8080/tasks/task';" class="nbutton" role="button">New task</button>
+    <button onclick="location.href = 'http://localhost:8080/a/activities';" class="nbutton" role="button">All activities</button>
+    <button onclick="location.href = 'http://localhost:8080';" class="nbutton" role="button">Back to main</button>
+    <button onclick="location.href = 'http://localhost:8080/userInfo';" class="nbutton" role="button">Profile</button>
+</div>
+<div th:switch="${added}" class="result">
+    <p th:case="'successfully'">Activity added successfully</p>
+    <p th:case="'error'">Server was unable to add your activity, please try again</p>
+    <p th:case="*"></p>
+</div>
+<div id="invalidDate" style="display: none;">
+    <p>The end time of the activity cannot be less than or equal to the start time.</p>
+</div>
+<div>
+    <form action="#" th:action="@{/a/activityForm}" th:object="${activity}" method="post" onsubmit="return checkDates();" >
+        <div class="mainWrapper">
+            <div class="activity">
+                <p class="activityName"><input th:value="${activity.name}" name="name" id="name" maxlength="19" placeholder="Activity name" required></p>
+                <p class="startTime"><input  th:value="${activity.formattedStartTime}" onchange="hideError()" name="startTime" id="startTime" type="datetime-local">&nbsp-&nbsp</p>
+                <p class="endTime"><input  th:value="${activity.formattedEndTime}" onchange="hideError()" name="endTime" id="endTime" type="datetime-local"></p>
+                <div style="height: 10px;"></div>
+                <p id="repeatText">Repeat: </p>
+                <select name="repetition" id="repetition" onchange="toggleDaysInput(this)">
+                    <option th:selected="${activity.repetitionToString} == 'never'" value="never">Never</option>
+                    <option th:selected="${activity.repetitionToString} == 'custom'" value="custom">Custom</option>
+                    <option th:selected="${activity.repetitionToString} == 'daily'" value="daily">Daily</option>
+                    <option th:selected="${activity.repetitionToString} == 'weekly'" value="weekly">Weekly</option>
+                </select>
+                <p id="repetitionDaysWrapper" style="display: none">Number of days: <input value="1" type="number" min="1" max="999" name="repetitionDays" id="repetitionDays"></p>
+                <p class="activityDesc">
+                    <textarea  class="activityDesc" maxlength="320" placeholder="Something to do..."  th:text="${activity.description}" name="description" id="description" rows="8" required></textarea>
+                </p>
+            </div>
+            <div class="activityButtons">
+                <button class="nbutton">Create</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

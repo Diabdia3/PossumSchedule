@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Your task</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="" th:href="@{/css/tasks/taskInfo.css}">
+    <link rel="stylesheet" href="" th:href="@{/css/general/navigation.css}">
+    <script type="text/javascript" th:src="@{/js/tasks/taskInfo.js}"></script>
+    <script src="https://kit.fontawesome.com/5be4e8ca06.js" crossorigin="anonymous"></script>
+</head>
+<body style="margin: 0; background: #18122B;">
+<div id="navigation">
+    <button onclick="location.href = 'http://localhost:8080/tasks/all';" class="nbutton" role="button">All tasks</button>
+    <button onclick="location.href = 'http://localhost:8080/tasks/task';" class="nbutton" role="button">New task</button>
+    <button onclick="location.href = 'http://localhost:8080/a/activities';" class="nbutton" role="button">Activities</button>
+    <button onclick="location.href = 'http://localhost:8080/a/activityForm';" class="nbutton" role="button">New activity</button>
+    <button onclick="location.href = 'http://localhost:8080';" class="nbutton" role="button">Back to main</button>
+    <button onclick="location.href = 'http://localhost:8080/userInfo';" class="nbutton" role="button">Profile</button>
+</div>
+<div class="task-info">
+    <div class="task-background">
+        <p class="task-name" th:text="${task.name}"></p>
+        <div class="task-priority">
+            <p th:text="${task.priority}"></p>
+        </div>
+        <div class="task-content">
+            <p th:text="${task.content}"></p>
+        </div>
+    </div>
+    <button id="edit-button" class="nbutton" th:taskId="${task.id}" onclick="editTask(this)"><i class="fa-solid fa-pen-to-square"></i></button>
+    <button id="complete-button" class="nbutton" th:taskId="${task.id}" onclick="completeTask(this)"><i class="fa-solid fa-check"></i></button>
+    <button id="remove-button" class="nbutton" th:taskId="${task.id}" onclick="removeTask(this)"><i class="fa-solid fa-xmark"></i></button>
+</div>
+</body>
+</html>

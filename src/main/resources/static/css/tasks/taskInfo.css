@@ -1,0 +1,106 @@
+html, body {
+    height: 100%;
+}
+
+p {
+  font-family: 'Brush Script MT', cursive;
+  color: #9c4a1a;
+}
+
+.task-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 15px;
+    background-color: #9A7EA6;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: calc(100% - 110px);
+    height: calc(100% - 110px);
+}
+
+.task-background {
+    position: relative;
+    align-self: start;
+    display: block;
+    overflow: auto;
+    min-width: 55%;
+    max-width: 75%;
+    width: auto;
+    min-height: 100%;
+    background: linear-gradient(40deg, #f8b2a1, #fddfb0);
+    margin-left: 65px;
+}
+
+.task-background::before {
+  content: "";
+  background-image: url("/image/line.png");
+  background-repeat: repeat-y;
+  position: absolute;
+  top: 100px;
+  left: 30px;
+  right: 35px;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.task-background::-webkit-scrollbar {
+    display: none;
+}
+
+.task-name {
+    margin: 5px 0 0 0;
+    font-size: 40px;
+    text-align: center;
+}
+
+.task-content {
+    min-height: min-content;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.task-content p {
+    word-break: break-all;
+    margin: 3px 30px 5px 30px;
+    line-height: 53px;
+    font-size: 25px;
+    text-align: justify;
+}
+
+.task-priority {
+    height: fit-content;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.task-priority p{
+    line-height: 1;
+    margin: 3px 5px 0 0;
+    font-size: 45px;
+    text-align: right;
+}
+
+#edit-button {
+    width: 50px;
+    align-self: start;
+    margin-top: 50px;
+    margin-left: 15px;
+    margin-right: -65px;
+}
+
+#complete-button {
+    width: 50px;
+    align-self: start;
+    margin-top: 120px;
+    margin-right: -65px;
+}
+
+#remove-button {
+    width: 50px;
+    align-self: start;
+    margin-top: 190px;
+}
