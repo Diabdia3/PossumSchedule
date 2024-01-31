@@ -14,7 +14,7 @@ public interface ActivityRepository extends CrudRepository<Activity, Integer> {
     @Query(value = """
             SELECT activity.* FROM activity 
             LEFT JOIN repetition_rule ON activity.repetition_rule_id = repetition_rule.id 
-            WHERE activity.user_id = ?1 AND (
+            WHERE activity.user_id = ?1 AND 
             (activity.start_time >= ?2 AND activity.start_time < ?3 ) OR 
             (activity.start_time < ?2 AND activity.end_time >= ?2 ) OR 
             (repetition_rule_id IS NOT NULL AND 
@@ -23,7 +23,7 @@ public interface ActivityRepository extends CrudRepository<Activity, Integer> {
                  WHEN repetition_rule.rule = 'WEEK' THEN DATEDIFF(DATE( ?2 ), DATE(activity.start_time)) % 7 <= DAteDIFF(activity.end_time, activity.start_time)
                  WHEN repetition_rule.rule = 'DAYS' THEN DATEDIFF(DATE( ?2 ), DATE(activity.start_time)) % repetition_rule.days <= DATEDIFF(activity.end_time, activity.start_time)
                 ELSE false
-            END))) ORDER BY TIME(activity.start_time);
+            END)) ORDER BY TIME(activity.start_time);
             """,
             nativeQuery = true)
     List<Activity> findByDateSortByStartTime(int userId, LocalDateTime from, LocalDateTime to);

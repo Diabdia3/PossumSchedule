@@ -3,11 +3,9 @@ package diabdia.creations.possumschedule.controllers;
 import diabdia.creations.possumschedule.entities.Task;
 import diabdia.creations.possumschedule.entities.User;
 import diabdia.creations.possumschedule.repositories.TaskRepository;
-import diabdia.creations.possumschedule.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +16,6 @@ import org.springframework.web.bind.annotation.*;
 public class TaskController {
     @Autowired
     private TaskRepository taskRepository;
-    @Autowired
-    private UserService userService;
 
     private User user;
 
@@ -27,7 +23,7 @@ public class TaskController {
         if(user != null)
             return user;
         else
-            user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return user;
     }
 

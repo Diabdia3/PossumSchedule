@@ -23,7 +23,7 @@
         <div id="change-img" onclick="changePhoto()">
             <p>Change photo</p>
         </div>
-        <p id="username" th:text="${user.name}"></p>
+        <p id="username" th:text="${user.name}" />
     </div>
     <div id="stats">
         <p th:text="'Ongoing tasks: ' + ${stats.unfinishedTasks}"></p>

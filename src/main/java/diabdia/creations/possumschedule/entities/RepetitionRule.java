@@ -1,6 +1,5 @@
 package diabdia.creations.possumschedule.entities;
 
-import diabdia.creations.possumschedule.enums.Rules;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

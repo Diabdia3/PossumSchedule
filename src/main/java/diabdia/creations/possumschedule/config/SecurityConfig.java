@@ -9,9 +9,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.HeaderWriterLogoutHandler;
 import org.springframework.security.web.header.writers.ClearSiteDataHeaderWriter;
 
-import static jakarta.servlet.DispatcherType.ERROR;
-import static jakarta.servlet.DispatcherType.FORWARD;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -19,20 +16,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         HeaderWriterLogoutHandler clearSiteData = new HeaderWriterLogoutHandler(new ClearSiteDataHeaderWriter(ClearSiteDataHeaderWriter.Directive.ALL));
-
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorize -> authorize
-                        .dispatcherTypeMatchers(FORWARD, ERROR).permitAll()
-                        .requestMatchers("/css/**", "/js/**", "/image/**", "/login", "/signUp").permitAll()
-                        .requestMatchers("/tasks/**", "/a/**", "/userInfo").hasAuthority("USER")
-                        .requestMatchers("/confirmationLink", "/resendLink", "/confirmEmail**").hasAuthority("USER_UNACTIVATED")
-                        .anyRequest().denyAll()
-                ).formLogin((form) -> form
+                .authorizeHttpRequests((r) -> r.requestMatchers("/login", "/signUp").permitAll())
+                .authorizeHttpRequests((r) -> r.requestMatchers("/tasks/**", "/a/**", "/userInfo")
+                        .hasAuthority("USER").anyRequest().permitAll())
+                .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll())
                 .logout((logout) -> logout.addLogoutHandler(clearSiteData));
-
         return http.build();
     }
 

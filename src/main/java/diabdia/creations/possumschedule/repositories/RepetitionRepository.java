@@ -1,6 +1,7 @@
 package diabdia.creations.possumschedule.repositories;
 
 import diabdia.creations.possumschedule.entities.RepetitionRule;
+import diabdia.creations.possumschedule.entities.Rules;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

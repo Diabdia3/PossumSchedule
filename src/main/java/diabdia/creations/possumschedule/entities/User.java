@@ -1,6 +1,5 @@
 package diabdia.creations.possumschedule.entities;
 
-import diabdia.creations.possumschedule.enums.Role;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,12 +24,9 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private boolean activated;
     @Column(unique = true)
     private String name;
     private String password;
-    @Column(unique = true)
-    private String email;
     @Nullable
     private LocalDate birthday;
     private LocalDate registration;
@@ -38,7 +34,7 @@ public class User implements UserDetails {
     @Basic(fetch = FetchType.EAGER)
     private String profilePicture;
     @Enumerated(EnumType.STRING)
-    private Role role = Role.USER_UNACTIVATED;
+    private final Role role = Role.USER;
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy="user")
     private List<Activity> activities;
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy="user")
