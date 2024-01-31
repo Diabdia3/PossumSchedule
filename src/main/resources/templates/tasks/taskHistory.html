@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Completed tasks</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="" th:href="@{/css/tasks/allTasks.css}">
+    <link rel="stylesheet" href="" th:href="@{/css/general/navigation.css}">
+    <script type="text/javascript" th:src="@{/js/tasks/taskHistory.js}"></script>
+</head>
+<body style="margin: 0;">
+<div id="navigation">
+    <button onclick="location.href = 'http://localhost:8080/tasks/all';" class="nbutton" role="button">Tasks</button>
+    <button onclick="location.href = 'http://localhost:8080/tasks/task';" class="nbutton" role="button">New task</button>
+    <button onclick="location.href = 'http://localhost:8080/a/activities';" class="nbutton" role="button">Activities</button>
+    <button onclick="location.href = 'http://localhost:8080/a/activityForm';" class="nbutton" role="button">New activity</button>
+    <button onclick="location.href = 'http://localhost:8080';" class="nbutton" role="button">Back to main</button>
+    <button onclick="location.href = 'http://localhost:8080/userInfo';" class="nbutton" role="button">Profile</button>
+</div>
+<div class="task-list">
+    <div class="image-container" th:each="task : ${tasks}" th:taskId="${task.id}" onclick="handleTaskClick(this)">
+        <img src="" th:src="@{/image/note.png}" >
+        <div class="text-overlay">
+            <p class="task-name" th:text="${task.name}"></p>
+            <div class="task-content">
+                <p class="task-content" th:text="${task.content}"></p>
+            </div>
+            <p class="task-priority" th:text="${task.priority}"></p>
+        </div>
+        <div class="buttons-overlay" >
+            <button class="nbutton showup" th:taskId="${task.id}" onclick="incompleteTask(this)">Incomplete</button>
+            <button class="nbutton showup" th:taskId="${task.id}" onclick="removeTask(this)">Remove</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

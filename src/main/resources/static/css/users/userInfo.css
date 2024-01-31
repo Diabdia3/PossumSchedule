@@ -1,0 +1,92 @@
+#info {
+    min-height:550px;
+    background: linear-gradient(90deg, #e9ce9d, #F8B2A1);
+    margin: 15px;
+    padding: 10px;
+}
+
+#stats p {
+    font-family: din-round,sans-serif;
+    color:  #9c4a1a;
+}
+
+#profile-pic {
+    max-width: 250px;
+    min-width: 250px;
+    width: 250px;
+    max-height: 250px;
+    min-height: 250px;
+    height: 250px;
+    position: relative;
+    top: 15px;
+    left: 15px;
+}
+
+#change-img {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    top: -294px;
+    left: 15px;
+    background-color: #9A7EA6;
+    opacity: 0;
+}
+
+#change-img p{
+    color: #e8e3e3;
+    top: 50px;
+    position: relative;
+    font-size: 55px;
+}
+
+#change-img:hover {
+  opacity: 8.0;
+}
+
+#stats-label {
+    font-family: din-round,sans-serif;
+    color: #9c4a1a;
+    font-size: 55px;
+    position: relative;
+    left: 30%;
+    display: inline;
+    font-weight: 700;
+    text-align: center;
+}
+
+#user {
+    border-radius: 10%;
+    height: 340px;
+    width: 280px;
+    background: #42373D;
+    display: inline;
+    float: right;
+    margin-top: -25px;
+    margin-bottom: -10px;
+    position: relative;
+    top: 80px;
+    right: 15px;
+}
+
+#user p{
+    margin-bottom: 0;
+    font-weight: 700;
+    text-align: center;
+}
+
+#username {
+    font-size: 45px;
+    color: #e8e3e3;
+    position: relative;
+    top: -325px;
+}
+
+#reg-date {
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+#reg-date p{
+
+}

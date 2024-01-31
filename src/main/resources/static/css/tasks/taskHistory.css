@@ -1,0 +1,91 @@
+
+.task-list {
+  height: 100%;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #443C68;
+  justify-content: space-evenly;
+}
+
+.text-overlay {
+  max-width: 450px;
+  max-height: 435px;
+  width: 450px;
+  height: 435px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0;
+  display: block;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: white;
+  text-align: start;
+}
+
+.buttons-overlay {
+    position: relative;
+    background-color: rgba(24,	18, 43, 0);
+    height: 436px;
+    width: 450px;
+    top: -439px;
+    clip-path: polygon(0 0, 89.4% 0, 100% 9.8%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.buttons-overlay:hover {
+    background-color: rgba(24,	18, 43, 0.5);
+}
+
+.buttons-overlay:hover .showup{
+    display: inline;
+}
+
+.buttons-overlay button{
+    display: none;
+    margin-left: 120px;
+    margin-top: 80px;
+    height: 80px;
+    font-size: 25px;
+}
+
+.text-overlay p{
+  font-family: 'Brush Script MT', cursive;
+  color: #9c4a1a;
+}
+
+.image-container {
+  margin-top: 0;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+.task-name {
+    margin: 5px 0 0 0;
+    font-size: 23px;
+    text-align: center;
+}
+
+div.task-content {
+    max-height: 340px;
+    height: 340px;
+    overflow: hidden;
+}
+
+p.task-content {
+    word-break: break-all;
+    margin: 30px 19px 18px 19px;
+    line-height: 52px;
+    font-size: 23px;
+    text-align: justify;
+}
+
+.task-priority {
+    margin: 15px 20px 0 0;
+    font-size: 18px;
+    text-align: right;
+}

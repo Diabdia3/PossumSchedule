@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Sign Up</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="" th:href="@{/css/users/signUpForm.css}">
+</head>
+<body>
+<div class="container">
+  <div class="wrapper">
+    <div class="title"><span>Sgn Up</span></div>
+    <form action="#" th:action="@{/signUp}" th:object="${user}" method="post">
+      <div class="row">
+        <i class="fas fa-user"></i>
+        <input type="text" id="name" th:field="*{name}" placeholder="Username" required>
+      </div>
+      <div class="row">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" th:field="*{password}" placeholder="Password" required>
+      </div>
+      <div class="row">
+        <i class="fas fa-lock"></i>
+        <input type="date" id="birthday" th:field="*{birthday}" placeholder="Birthday" >
+      </div>
+      <div class="row button">
+        <input type="submit" value="Sign In">
+      </div>
+      <div class="signup-link"> <a href="http://localhost:8080/login">Login</a></div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

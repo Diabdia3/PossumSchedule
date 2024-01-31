@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>New task</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="" th:href="@{/css/tasks/taskForm.css}">
+    <link rel="stylesheet" href="" th:href="@{/css/general/navigation.css}">
+    <script type="text/javascript" th:src="@{/js/tasks/taskForm.js}"></script>
+    <script src="https://kit.fontawesome.com/5be4e8ca06.js" crossorigin="anonymous"></script>
+</head>
+<body style="margin: 0;">
+<div id="navigation">
+    <button onclick="location.href = 'http://localhost:8080/tasks/all';" class="nbutton" role="button">All tasks</button>
+    <button onclick="location.href = 'http://localhost:8080/a/activities';" class="nbutton" role="button">Activities</button>
+    <button onclick="location.href = 'http://localhost:8080';" class="nbutton" role="button">Back to main</button>
+    <button onclick="location.href = 'http://localhost:8080/userInfo';" class="nbutton" role="button">Profile</button>
+</div>
+<form action="#" th:action="@{/tasks/task}" th:object="${task}" method="post">
+<div class="task-info">
+    <div class="task-background">
+        <p class="task-name">
+            <input type="text" th:value="${task.name}" name="name" id="name" maxlength="28" placeholder="Task name" required>
+            <input type="number" th:value="${task.id}" name="id" id="id" style="display: none;">
+        </p>
+        <div class="task-priority">
+            <p>
+                <input type="number" min="1" max="999" th:value="${task.priority}" name="priority" id="priority">
+            </p>
+        </div>
+        <div class="task-content">
+            <p>
+                <textarea maxlength="2000" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Something to do..."  th:text="${task.content}" name="content" id="content"></textarea>
+            </p>
+        </div>
+    </div>
+    <button id="submit-button" class="nbutton"><i class="fa-solid fa-check"></i></button>
+</div>
+</form>
+</body>
+</html>
