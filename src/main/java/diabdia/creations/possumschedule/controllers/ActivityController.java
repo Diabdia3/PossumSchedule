@@ -5,6 +5,7 @@ import diabdia.creations.possumschedule.entities.RepetitionRule;
 import diabdia.creations.possumschedule.entities.User;
 import diabdia.creations.possumschedule.repositories.ActivityRepository;
 import diabdia.creations.possumschedule.repositories.RepetitionRepository;
+import diabdia.creations.possumschedule.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,8 @@ public class ActivityController {
     private ActivityRepository activityRepository;
     @Autowired
     private RepetitionRepository repetitionRepository;
+    @Autowired
+    private UserService userService;
 
     private User user;
 
@@ -35,7 +38,7 @@ public class ActivityController {
         if(user != null)
             return user;
         else
-            user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         return user;
     }
 
