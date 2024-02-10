@@ -17,7 +17,7 @@ function changePhoto(){
         method: "POST",
         body: formData
         })
-        .then(response => handleResponce(response, selectedImage))
+        .then(response => handleResponse(response, selectedImage))
         .catch(error => {
         window.alert('Error loading file D:');
         console.error("Error:", error);
@@ -27,7 +27,7 @@ function changePhoto(){
     input.click();
 }
 
-function handleResponce(res, uImage) {
+function handleResponse(res, uImage) {
     if(!res.ok){
         throw res.status;
         return;

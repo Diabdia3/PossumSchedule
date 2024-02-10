@@ -1,6 +1,5 @@
 .task-list {
-  min-height: 79vh;
-  height: 100%;
+  height: calc(100vh - 110px);
   padding: 15px;
   display: flex;
   flex-wrap: wrap;
