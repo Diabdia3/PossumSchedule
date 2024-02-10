@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Confirm your email</title>
+    <link rel="stylesheet" href="" th:href="@{/css/users/confirmationLink.css}">
+    <link rel="stylesheet" href="" th:href="@{/css/general/navigation.css}">
+    <script type="text/javascript" th:src="@{/js/users/confirmationLink.js}"></script>
+</head>
+<body>
+<div class="container">
+    <div class="wrapper">
+        <div class="title"><span>Confirm your email</span></div>
+        <div>
+            <p th:text="'Follow the link, sent to ' + ${email} + ' to confirm your email.'"></p>
+            <p id="resendP"> If you don't see the link on your email, click the button below to resend it.</p>
+        </div>
+        <button class="nbutton" onclick="resend()">Resend</button>
+        <div>
+            <p th:text="${error}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
