@@ -2,6 +2,10 @@ html, body {
     height: 100%;
 }
 
+body {
+    margin: 0;
+}
+
 p {
   font-family: 'Brush Script MT', cursive;
   color: #9c4a1a;
@@ -13,7 +17,6 @@ p {
     align-items: center;
     position: relative;
     padding: 15px;
-    background-color: #9A7EA6;
     overflow: scroll;
     overflow-x: hidden;
     overflow-y: auto;

@@ -125,6 +125,11 @@ body {
     display: none;
 }
 
+.leftAct p.activityName {
+    position: relative;
+    left: -60px;
+}
+
 .rightWrapper {
     overflow: hidden;
     z-index: -1;
@@ -142,6 +147,21 @@ body {
 
 .rightAct button{
     display: none;
+}
+
+.rightAct p.activityName {
+    position: relative;
+    right: 90px;
+}
+
+.rightAct p.activityName {
+    position: relative;
+    right: 90px;
+}
+
+.rightAct p.activityDesc {
+    position: relative;
+    right: 180px;
 }
 
 .activity input, textarea {

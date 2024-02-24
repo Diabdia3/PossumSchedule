@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(FORWARD, ERROR).permitAll()
-                        .requestMatchers("/css/**", "/js/**", "/image/**", "/login", "/signUp").permitAll()
+                        .requestMatchers( "/css/**", "/js/**", "/image/**", "/", "/login", "/signUp").permitAll()
                         .requestMatchers("/tasks/**", "/a/**", "/userInfo").hasAuthority("USER")
                         .requestMatchers("/confirmationLink", "/resendLink", "/confirmEmail**").hasAuthority("USER_UNACTIVATED")
                         .anyRequest().denyAll()

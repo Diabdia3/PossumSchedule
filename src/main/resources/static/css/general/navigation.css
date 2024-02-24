@@ -1,3 +1,9 @@
+body {
+    background: #9A7EA6;
+    background-image: url("/image/pattern.png");
+    background-repeat: repeat;
+}
+
 .nbutton {
     appearance: button;
     background-color: #C4889F;

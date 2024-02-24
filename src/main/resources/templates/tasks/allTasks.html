@@ -22,7 +22,7 @@
             <div class="text-overlay">
                 <p class="task-name" th:text="${task.name}"></p>
                 <div class="task-content">
-                    <p class="task-content" th:text="${task.content}"></p>
+                    <p class="task-content" th:utext="${task.formattedContent}"></p>
                 </div>
                 <p class="task-priority" th:text="${task.priority}"></p>
             </div>
