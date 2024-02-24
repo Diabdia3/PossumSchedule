@@ -2,6 +2,10 @@ html, body{
     height: 100%;
 }
 
+body {
+    margin: 0;
+}
+
 form {
     height: calc(100% - 110px);
 }
@@ -25,7 +29,6 @@ input::-webkit-inner-spin-button {
     align-items: center;
     position: relative;
     padding: 15px;
-    background-color: #9A7EA6;
     overflow: scroll;
     overflow-x: hidden;
     overflow-y: auto;

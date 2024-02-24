@@ -32,6 +32,10 @@ public class Task {
         this.completed = completed;
     }
 
+    public String getFormattedContent(){
+        return content.replaceAll("\n", "<br>");
+    }
+
     @Override
     public String toString(){
         return name + "\n" + content + "\n" + priority + "\n" + completed;

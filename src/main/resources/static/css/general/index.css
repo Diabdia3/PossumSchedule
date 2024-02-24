@@ -1,0 +1,98 @@
+body {
+    padding-left: 20px;
+}
+
+#login-box {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    padding: 10px;
+}
+
+#login-box p {
+    display: inline;
+    font-family: 'Brush Script MT', cursive;
+    color: #e4d6ce;
+    font-size: 30px;
+}
+
+#login-box button {
+    width: 110px;
+    display: inline;
+}
+
+#main-content {
+
+}
+
+#introduction {
+
+}
+
+#possum {
+    display: inline;
+    position: relative;
+    left: 50px;
+    font-size: 150px;
+    margin: 0;
+    font-family: 'Brush Script MT', cursive;
+    color: #ebcf8a;
+    text-shadow: -4px -4px #9c4a1a;
+}
+
+#schedule {
+    position: relative;
+    top: -50px;
+    left: 100px;
+    display: inline;
+    font-size: 150px;
+    margin: 0;
+    font-family: 'Brush Script MT', cursive;
+    color: #ebcf8a;
+    text-shadow: -4px -4px #9c4a1a;
+}
+
+#name-img {
+
+}
+
+#name-desk {
+    position: relative;
+    display: inline;
+    top: -60px;
+    margin-left: 140px;
+    font-family: 'Brush Script MT', cursive;
+    color: #ebcf8a;
+    font-size: 40px;
+}
+
+#description {
+
+}
+
+#task-desk {
+    font-family: 'Brush Script MT', cursive;
+    color: #ebcf8a;
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+#task-img {
+    width: 700px;
+    float: right;
+    margin-left: 25px;
+}
+
+#act-img {
+    float: left;
+    position: relative;
+    top: -50px;
+    width: 700px;
+}
+
+#act-desk {
+    font-family: 'Brush Script MT', cursive;
+    color: #ebcf8a;
+    font-size: 30px;
+    margin-right: 20px;
+}
