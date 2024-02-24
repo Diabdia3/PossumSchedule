@@ -88,9 +88,9 @@ public class ActivityController {
                     activity.getRepetition().setId(rules.get(0).getId());
             }
             activityRepository.save(activity);
-            model.addAttribute("added", "successfully");
+            model.addAttribute("result", "successfully");
         } catch (Exception e) {
-            model.addAttribute("added", "error");
+            model.addAttribute("result", "error");
             model.addAttribute("activity", activity);
             e.printStackTrace();
             return "activities/activityForm";
@@ -146,10 +146,13 @@ public class ActivityController {
 
     private int getCurrentIndex(List<Activity> activities){
         LocalDateTime now = LocalDateTime.now();
+        int size = activities.size();
+        if(size == 0)
+            return 0;
         for(int i = 0; i < activities.size(); i++){
             if(now.isBefore(activities.get(i).getEndTime()))
                 return i;
         }
-        return 0;
+        return size-1;
     }
 }

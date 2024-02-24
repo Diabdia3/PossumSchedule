@@ -8,7 +8,7 @@
     <script type="text/javascript" th:src="@{/js/tasks/taskForm.js}"></script>
     <script src="https://kit.fontawesome.com/5be4e8ca06.js" crossorigin="anonymous"></script>
 </head>
-<body style="margin: 0;">
+<body onload="resize()">
 <div id="navigation">
     <button onclick="location.href = 'http://localhost:8080/tasks/all';" class="nbutton" role="button">All tasks</button>
     <button onclick="location.href = 'http://localhost:8080/a/activities';" class="nbutton" role="button">Activities</button>
@@ -29,7 +29,7 @@
         </div>
         <div class="task-content">
             <p>
-                <textarea maxlength="2000" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Something to do..."  th:text="${task.content}" name="content" id="content"></textarea>
+                <textarea maxlength="2000" oninput="resize(this)" placeholder="Something to do..."  th:text="${task.content}" name="content" id="content"></textarea>
             </p>
         </div>
     </div>

@@ -19,6 +19,7 @@ body {
 }
 
 .activityButtons {
+    margin-top: 8px;
     position: absolute;
     top: 475px;
     left: 320px;

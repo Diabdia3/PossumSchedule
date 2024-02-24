@@ -8,7 +8,7 @@
     <script type="text/javascript" th:src="@{/js/tasks/taskInfo.js}"></script>
     <script src="https://kit.fontawesome.com/5be4e8ca06.js" crossorigin="anonymous"></script>
 </head>
-<body style="margin: 0; background: #18122B;">
+<body>
 <div id="navigation">
     <button onclick="location.href = 'http://localhost:8080/tasks/all';" class="nbutton" role="button">All tasks</button>
     <button onclick="location.href = 'http://localhost:8080/tasks/task';" class="nbutton" role="button">New task</button>
@@ -24,7 +24,7 @@
             <p th:text="${task.priority}"></p>
         </div>
         <div class="task-content">
-            <p th:text="${task.content}"></p>
+            <p th:utext="${task.formattedContent}"></p>
         </div>
     </div>
     <button id="edit-button" class="nbutton" th:taskId="${task.id}" onclick="editTask(this)"><i class="fa-solid fa-pen-to-square"></i></button>

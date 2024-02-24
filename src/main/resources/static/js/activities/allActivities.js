@@ -10,22 +10,20 @@ var tempRDays;
 window.onload = function(){
     var list = document.getElementById("activityList");
     var current = list.getAttribute("current");
-    cur = current;
+    cur = Number(current);
     var wrappers = list.children;
-    for(var i = 0; i < wrappers.length-2; i++){
-        if(current != i)
-            continue;
-        wrappers[i].classList.add('mainWrapper');
-        if(i > 0){
-            wrappers[i-1].classList.add('leftWrapper');
-            wrappers[i-1].children[0].classList.add('leftAct');
-            document.getElementById("slideLeft").onclick = previous;
-        }
-        if(i < wrappers.length-3){
-            wrappers[i+1].classList.add('rightWrapper');
-            wrappers[i+1].children[0].classList.add('rightAct');
+    wrappers[current].classList.add('mainWrapper');
+    if(current > 0){
+        wrappers[cur-1].classList.add('leftWrapper');
+        wrappers[cur-1].children[0].classList.add('leftAct');
+        document.getElementById("slideLeft").onclick = previous;
+    }
+    if(current < wrappers.length-2){
+        setTimeout(function(){
+            wrappers[cur+1].classList.add('rightWrapper');
+            wrappers[cur+1].children[0].classList.add('rightAct');
             document.getElementById("slideRight").onclick = next;
-        }
+        }, 3500);
     }
 }
 

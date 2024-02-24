@@ -17,7 +17,8 @@ body{
 }
 
 .wrapper{
-  height: 290px;
+  height: -webkit-fill-available;
+  padding-bottom: 1px;
   width: 100%;
   background: #FDE2B1;
   border-radius: 5px;
@@ -43,6 +44,7 @@ body{
 }
 
 p {
+   hyphens: auto;
    margin-left: 5px;
    margin-top: 5px;
    color: #9c4a1a;

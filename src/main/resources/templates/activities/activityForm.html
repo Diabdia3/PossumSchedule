@@ -17,7 +17,7 @@
     <button onclick="location.href = 'http://localhost:8080';" class="nbutton" role="button">Back to main</button>
     <button onclick="location.href = 'http://localhost:8080/userInfo';" class="nbutton" role="button">Profile</button>
 </div>
-<div th:switch="${added}" class="result">
+<div th:if="${result != null}" th:switch="${result}" class="result">
     <p th:case="'successfully'">Activity added successfully</p>
     <p th:case="'error'">Server was unable to add your activity, please try again</p>
     <p th:case="*"></p>
