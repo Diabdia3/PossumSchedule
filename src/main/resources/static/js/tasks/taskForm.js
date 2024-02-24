@@ -14,7 +14,4 @@ function resize(textarea){
     textarea.style.height = textarea.scrollHeight + "px";
 }
 
-function exitEditMode(button){
-    var taskId = button.getAttribute("taskId");
-    window.location.replace("http://localhost:8080/tasks/task/" + taskId);
-}
+

@@ -35,8 +35,6 @@ body {
     background: linear-gradient(90deg, #e9ce9d, #F8B2A1);
     width: 500px;
     height: 490px;
-    padding-top: 5px;
-    margin-top: 15px;
 }
 
 .activityButtons {
@@ -59,23 +57,44 @@ body {
 
 .activityName{
     text-align: center;
+}
+
+.activityName input{
+    font-family: 'Brush Script MT', cursive;
+    color: #9c4a1a;
     font-size: 30px;
-    margin: 0;
+    text-align: center;
 }
 
 .dateTime{
     text-align: center;
-    font-size: 17px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.startDateTime {
+    width: 90px;
+    align-items: end;
+    flex-flow: column;
+}
+
+.dateTime input::-webkit-inner-spin-button,
+.dateTime input::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.endDateTime {
+    width: 90px;
+    align-items: end;
+    flex-flow: column;
 }
 
 .activityDesc{
+    font-family: 'Brush Script MT', cursive;
+    color: #9c4a1a;
     font-size: 25px;
     margin-left: 15px;
     width: 440px;
-    height: 390px;
-    margin-top: 10px;
+    height: 320px;
 }
 
 .activityWrapper {
@@ -145,6 +164,35 @@ body {
     right: 180px;
 }
 
+.activity input, textarea {
+    font-family: 'Brush Script MT', cursive;
+    color: #9c4a1a;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+#invalidDate {
+    width: 210px;
+    height: 70px;
+    padding-top: 10px;
+    position: absolute;
+    z-index: 1;
+    left: calc(50% + 150px);
+    top: 200px;
+    border: 4px solid #42373D;
+    background-color: #543f5d;
+    border-radius: 30px;
+}
+
+#invalidDate p {
+    font-family: 'Brush Script MT', cursive;
+    color: #e8e3e3;
+    font-size: 15px;
+    text-align: center;
+}
+
 #editButtons {
     position:absolute;
     top: 630px;
@@ -157,42 +205,60 @@ body {
     width: 50px;
 }
 
-.dateNavigation {
-    display: inline;
-    margin: 20px;
+#loadPrevious {
+    position: absolute;
+    top: 185px;
+    left: calc(50% - 555px);
+    display: flex;
 }
 
-.dateNavigation button {
+#loadPrevious button {
     width: 50px;
-    height: 50px;
-    margin: 5px;
+    height: 400px;
 }
 
-.dateNavigation i {
+#loadPrevious i {
   border: solid #e8e3e3;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
   transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+#loadNext {
+    position: absolute;
+    top: 185px;
+    left: calc(50% + 400px);
+    display: flex;
+}
+
+#loadNext button {
+    width: 50px;
+    height: 400px;
+}
+
+#loadNext i {
+  border: solid #e8e3e3;
+  border-width: 0 7px 7px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
 
 #displayedDate {
     margin-top: -20px;
-    display: flex;
-    justify-content: center;
+    align-self: center;
 }
 
-#displayedDate input{
+#displayedDate p{
     font-family: 'Brush Script MT', cursive;
     color: #e7d69c;
     text-shadow: -3px -2px #9c4a1a;
     font-size: 30px;
     text-align: center;
-    margin: 10px -40px 0 -10px;
-    background: transparent;
-    border: none;
-    outline: none;
-    resize: none;
+    margin-bottom: 0px;
 }
 
 #no-activities {
@@ -213,15 +279,16 @@ body {
     right: 0;
     bottom: 5px;
     display: flex;
-    align-items: center;
 }
 
-.activityRepetition p {
+.activityRepetition input {
     display: inline;
     text-align: center;
     font-size: 18px;
     width: 50px;
+    margin-right: -11px;
     z-index: 2;
+    margin-left: -8px;
 }
 
 .activityRepetition i {
@@ -229,14 +296,18 @@ body {
     margin-top: 5px;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0;
+.activityRepetition select {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: #9c4a1a;
+    width: 100%;
+    margin-left: 5px;
+    -webkit-appearance: none;
 }
 
-#nextDay i {
-    transform: rotate(-45deg);
-}
-
-#nextWeek i {
-    transform: rotate(-45deg);
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
