@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 
 @Service
 public class ActivityService {
@@ -23,6 +22,13 @@ public class ActivityService {
 
     @Autowired
     private RepetitionRepository repetitionRepository;
+
+    public Activity findActivity(int id, int userId){
+        Activity activity =  activityRepository.findById(id).orElse(null);
+        if(!activity.getUser().getId().equals(userId))
+            throw new AccessDeniedException("403");
+        return activity;
+    }
 
     public List<Activity> getTodayActivities(int userId){
         return activityRepository.findByDateSortByStartTime(
@@ -67,26 +73,12 @@ public class ActivityService {
         activityRepository.deleteById(id);
     }
 
-    public void editActivity(int id, int userId, String name, String description, LocalDateTime startTime, LocalDateTime endTime, Optional<String>  repetition, Optional<Integer> repetitionDays){
-        Activity a = activityRepository.findById(id).orElse(null);
-        if(!a.getUser().getId().equals(userId))
+    public void editActivity(Activity activity, int userId){
+        Activity initialActivity = activityRepository.findById(activity.getId()).orElse(null);
+        if(!initialActivity.getUser().getId().equals(userId))
             throw new AccessDeniedException("403");
-        a.setName(name);
-        a.setDescription(description);
-        a.setStartTime(startTime);
-        a.setEndTime(endTime);
-        if(repetition.isPresent()) {
-            a.setRepetition(repetition.orElseThrow());
-            a.setRepetitionDays(repetitionDays.orElseThrow());
-            RepetitionRule rule = a.getRepetition();
-            rule.setId(null);
-            List<RepetitionRule> rules = repetitionRepository.findByRuleAndDays(rule.getRule().toString(), rule.getDays());
-            if (rules.isEmpty())
-                repetitionRepository.save(rule);
-            else
-                a.getRepetition().setId(rules.get(0).getId());
-        }
-        activityRepository.save(a);
+        activity.setUser(initialActivity.getUser());
+        activityRepository.save(activity);
     }
 
     public String todayToString(){
