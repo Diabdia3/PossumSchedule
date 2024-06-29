@@ -17,18 +17,12 @@
       <button onclick="location.href = 'http://localhost:8080';" class="nbutton" role="button">Back to main</button>
       <button onclick="location.href = 'http://localhost:8080/userInfo';" class="nbutton" role="button">Profile</button>
   </div>
+  <div id="loadPrevious">
+      <button id="previousWeek" class="nbutton" onclick="previousWeek()"><i></i><i></i></button>
+      <button id="previousDay" class="nbutton" onclick="previousDay()"><i></i></button>
+  </div>
   <div id="displayedDate">
-      <div class="dateNavigation">
-          <button id="previousWeek" class="nbutton" onclick="previousWeek()"><i></i><i></i></button>
-          <button id="previousDay" class="nbutton" onclick="previousDay()"><i></i></button>
-      </div>
-      <p >
-          <input type="date" th:value="${todaysDate}" onclick="showDP(this)" onchange="changeDate(this)">
-      </p>
-      <div class="dateNavigation">
-          <button id="nextDay" class="nbutton" onclick="nextDay()"><i></i></button>
-          <button id="nextWeek" class="nbutton" onclick="nextWeek()"><i></i><i></i></button>
-      </div>
+      <p th:text="${todaysDate}"></p>
   </div>
   <div id="activityList" th:current="${current}" th:day="${today}">
       <div id="no-activities" th:if="${activities.size == 0}">
@@ -38,12 +32,23 @@
       </div>
       <div th:each="a : ${activities}" class="activityWrapper">
           <div class="activity">
-              <p class="activityName" th:text="${a.name}"></p>
-              <p class="dateTime" th:text="${a.formattedStartTime} + '&nbsp-&nbsp' + ${a.formattedEndTime}"> </p>
-              <p class="activityDesc" th:text="${a.description}"></p>
+              <p class="activityName"><input class="inputName" readonly th:value="${a.name}" maxlength="19"></p>
+              <p class="dateTime">
+                  <input th:class="${a.isTodayOnly()} ? startDateTime : ''" style="margin-right: -30px;" onclick="showPicker()" readonly  th:value="${a.formattedStartTime}" onchange="hideError()" type="datetime-local">
+                  &nbsp-&nbsp
+                  <input th:class="${a.isTodayOnly()} ? endDateTime : ''" onclick="showPicker()" readonly  th:value="${a.formattedEndTime}" onchange="hideError()" type="datetime-local">
+              </p>
+              <p class="activityDesc">
+                  <textarea readonly class="activityDesc" maxlength="216" th:text="${a.description}"  rows="9" ></textarea>
+              </p>
               <div class="activityRepetition" th:if="${a.repetition != null}">
                   <i class="fa-solid fa-repeat"></i>
-                  <p th:text="${a.repetitionToString}"></p>
+                  <input th:style="${a.repetitionToString == 'custom' ? 'display:block' : 'display:none'}" th:value="${a.repetition.days}" type="number" min="1" max="999" readonly>
+                  <select onchange="toggleDaysInput(this)" disabled>
+                      <option th:selected="${a.repetitionToString} == 'custom'" value="custom" >Days</option>
+                      <option th:selected="${a.repetitionToString} == 'daily'" value="daily">Daily</option>
+                      <option th:selected="${a.repetitionToString} == 'weekly'" value="weekly">Weekly</option>
+                  </select>
               </div>
               <div class="activityButtons" th:activityId="${a.id}">
                   <button class="nbutton" onclick="edit()"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -58,5 +63,13 @@
       <button class="nbutton" onclick="confirm()"><i class="fa-solid fa-check"></i></button>
       <button class="nbutton" onclick="cancel()"><i class="fa-solid fa-xmark"></i></button>
   </div>
+  <div id="loadNext">
+      <button id="nextDay" class="nbutton" onclick="nextDay()"><i></i></button>
+      <button id="nextWeek" class="nbutton" onclick="nextWeek()"><i></i><i></i></button>
+  </div>
+  <form action="#" th:action="@{/a/activityForm}" th:object="${activity}" method="post" >
+  </form>
+  <form action="#" th:action="@{/a/activityForm}" th:object="${activity}" method="post" >
+  </form>
 </body>
 </html>
