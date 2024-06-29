@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Your activities</title>
     <link rel="stylesheet" href="/css/general/navigation.css">
     <link rel="stylesheet" href="/css/general/index.css">
 </head>
 <body>
-<div id="login-box">
+<div id="login-box" sec:authorize="isAnonymous()">
     <button class="nbutton" onclick="location.href = 'http://localhost:8080/login';">Login</button>
     <p>or</p>
     <button class="nbutton" onclick="location.href = 'http://localhost:8080/signUp';">Sign Up</button>
+</div>
+<div id="login-box" sec:authorize="isAuthenticated()">
+    <button class="nbutton" onclick="location.href = 'http://localhost:8080/tasks/all';">Tasks</button>
+    <button class="nbutton" onclick="location.href = 'http://localhost:8080/a/activities';">Activities</button>
 </div>
 <div id="main-content">
     <div id="introduction">

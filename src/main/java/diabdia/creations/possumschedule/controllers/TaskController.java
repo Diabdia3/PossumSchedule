@@ -3,6 +3,7 @@ package diabdia.creations.possumschedule.controllers;
 import diabdia.creations.possumschedule.entities.Task;
 import diabdia.creations.possumschedule.entities.User;
 import diabdia.creations.possumschedule.repositories.TaskRepository;
+import diabdia.creations.possumschedule.service.TaskService;
 import diabdia.creations.possumschedule.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/tasks")
 public class TaskController {
     @Autowired
-    private TaskRepository taskRepository;
+    private TaskService taskService;
     @Autowired
     private UserService userService;
 
@@ -41,10 +42,8 @@ public class TaskController {
 
     @GetMapping("/task/{id}/edit")
     public String editTask(@PathVariable("id") int id, Model model) {
-        Task task =  taskRepository.findById(id);
-        if(!task.getUser().getId().equals(getUser().getId()))
-            throw new AccessDeniedException("403");
-        model.addAttribute("task", task);
+        model.addAttribute("task", taskService.getTask(id, getUser().getId()));
+        model.addAttribute("editMode", true);
         return "tasks/taskForm";
     }
 
@@ -52,39 +51,33 @@ public class TaskController {
     public String taskSubmit(@ModelAttribute Task task, Model model) {
         task.setCompleted(false);
         task.setUser(getUser());
-        taskRepository.save(task);
+        taskService.saveTask(task);
         model.addAttribute("task", task);
         return "tasks/taskInfo";
     }
 
     @GetMapping("/task/{id}")
     public String showTask(@PathVariable("id") int id, Model model) {
-        Task task =  taskRepository.findById(id);
-        if(!task.getUser().getId().equals(getUser().getId()))
-            throw new AccessDeniedException("403");
-        model.addAttribute("task", task);
+        model.addAttribute("task", taskService.getTask(id, getUser().getId()));
         return "tasks/taskInfo";
     }
 
     @GetMapping("/all")
     public String showAll(Model model) {
-        model.addAttribute("tasks", taskRepository.findAllByUserIdSortByPriority(getUser().getId()));
+        model.addAttribute("tasks", taskService.getAll(getUser().getId()));
         return "tasks/allTasks";
     }
 
     @GetMapping("/history")
     public String showCompleted(Model model) {
-        model.addAttribute("tasks", taskRepository.findAllCompletedByUserIdSortByPriority(getUser().getId()));
+        model.addAttribute("tasks", taskService.getAllCompleted(getUser().getId()));
         return "tasks/taskHistory";
     }
 
     @PostMapping("/remove")
     public ResponseEntity<String> removeTask(@RequestParam("taskId") int taskId) {
         try{
-            Task task =  taskRepository.findById(taskId);
-            if(!task.getUser().getId().equals(getUser().getId()))
-                throw new AccessDeniedException("403");
-            taskRepository.deleteById(taskId);
+            taskService.removeTask(taskId, getUser().getId());
         } catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.status(500).build();
@@ -95,10 +88,7 @@ public class TaskController {
     @PostMapping("/complete")
     public ResponseEntity<String> completeTask(@RequestParam("taskId") int taskId) {
         try{
-            Task task =  taskRepository.findById(taskId);
-            if(!task.getUser().getId().equals(getUser().getId()))
-                throw new AccessDeniedException("403");
-            taskRepository.completeTask(taskId);
+            taskService.completeTask(taskId, getUser().getId());
         } catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.status(500).build();
@@ -109,10 +99,7 @@ public class TaskController {
     @PostMapping("/incomplete")
     public ResponseEntity<String> incompleteTask(@RequestParam("taskId") int taskId) {
         try{
-            Task task =  taskRepository.findById(taskId);
-            if(!task.getUser().getId().equals(getUser().getId()))
-                throw new AccessDeniedException("403");
-            taskRepository.incompleteTask(taskId);
+            taskService.incompleteTask(taskId, getUser().getId());
         } catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.status(500).build();
