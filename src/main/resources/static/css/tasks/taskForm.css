@@ -86,7 +86,7 @@ input::-webkit-inner-spin-button {
 
 
 .task-content p {
-    word-break: break-all;
+    word-break: break-word;
     margin: 3px 30px 5px 30px;
     line-height: 50px;
     font-size: 25px;
@@ -127,4 +127,11 @@ input::-webkit-inner-spin-button {
     align-self: start;
     margin-top: 50px;
     margin-left: 15px;
+}
+
+#remove-button {
+    width: 50px;
+    align-self: start;
+    margin-top: 120px;
+    margin-left: -65px;
 }

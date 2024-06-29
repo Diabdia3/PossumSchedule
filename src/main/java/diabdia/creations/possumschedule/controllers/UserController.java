@@ -3,12 +3,9 @@ package diabdia.creations.possumschedule.controllers;
 import diabdia.creations.possumschedule.entities.User;
 import diabdia.creations.possumschedule.entities.VerificationToken;
 import diabdia.creations.possumschedule.events.OnRegistrationCompleteEvent;
-import diabdia.creations.possumschedule.repositories.ActivityRepository;
-import diabdia.creations.possumschedule.repositories.TaskRepository;
 import diabdia.creations.possumschedule.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +24,6 @@ import java.util.Calendar;
 @Controller
 public class UserController {
     @Autowired
-    private TaskRepository taskRepository;
-    @Autowired
-    private ActivityRepository activityRepository;
-    @Autowired
     private UserService userService;
     @Autowired
     private ApplicationEventPublisher eventPublisher;
@@ -44,6 +37,9 @@ public class UserController {
             user = userService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
         return user;
     }
+
+    @GetMapping("/")
+    public String mainPage(Model model) { return "index"; }
 
     @GetMapping("/login")
     public String loginForm(Model model) {
@@ -134,7 +130,7 @@ public class UserController {
     @GetMapping("/userInfo")
     public String userInfo(Model model){
         model.addAttribute("user", getUser());
-        model.addAttribute("stats", new Stats(getUser().getId()));
+        //model.addAttribute("stats", new Stats(getUser().getId()));
         return "user/userInfo";
     }
 
@@ -150,18 +146,4 @@ public class UserController {
         return ResponseEntity.ok("Image updated successfully.");
     }
 
-    @Getter
-    public class Stats{
-        private final int completedTasks ;
-        private final int unfinishedTasks;
-        private final int weeklyActivities;
-        private final int remainingWeeklyActivities;
-
-        public Stats(int userId){
-            this.completedTasks = taskRepository.getCompletedTasksCount(userId);
-            this.unfinishedTasks = taskRepository.getUnfinishedTasksCount(userId);
-            this.weeklyActivities = activityRepository.getAllWeeklyActivitiesCount(userId);
-            this.remainingWeeklyActivities = activityRepository.getRemainingWeeklyActivitiesCount(userId);
-        }
-    }
 }

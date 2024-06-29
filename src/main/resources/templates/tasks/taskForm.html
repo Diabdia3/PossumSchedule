@@ -34,6 +34,7 @@
         </div>
     </div>
     <button id="submit-button" class="nbutton"><i class="fa-solid fa-check"></i></button>
+    <button th:if="${editMode}" th:taskId="${task.id}" id="remove-button" type="button" onclick="exitEditMode(this)" class="nbutton"><i class="fa-solid fa-xmark"></i></button>
 </div>
 </form>
 </body>
