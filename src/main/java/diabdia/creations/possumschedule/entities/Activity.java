@@ -49,11 +49,11 @@ public class Activity {
     }
 
     public String getFormattedStartTime(){
-        return startTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+        return startTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     public String getFormattedEndTime(){
-        return endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm"));
+        return endTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     public String repetitionToString(){

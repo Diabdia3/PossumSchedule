@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Enter your email</title>
+    <link rel="stylesheet" href="" th:href="@{/css/users/confirmationLink.css}">
+    <link rel="stylesheet" href="" th:href="@{/css/users/login.css}">
+    <link rel="stylesheet" href="" th:href="@{/css/general/navigation.css}">
+</head>
+<body>
+<div class="container">
+    <div class="wrapper">
+        <div class="title"><span>Enter your email</span></div>
+        <div>
+            <p th:text="${result}" id="result"></p>
+        </div>
+        <form action="#" th:action="@{/getEmail}" method="post">
+            <div class="row">
+                <i class="fas fa-user"></i>
+                <input type="email" id="email" name="email" placeholder="Your email" required>
+            </div>
+            <div class="row button">
+                <input type="submit" value="Change password">
+            </div>
+            <div class="signup-link"> <a href="http://localhost:8080/login">Back to Login</a></div>
+        </form>
+        <div>
+            <p th:text="${error}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

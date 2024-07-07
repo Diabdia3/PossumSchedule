@@ -7,7 +7,7 @@ function removeTask(button) {
     stopBubbling(this.event);
     if(!confirm('Do you want to REMOVE the task?'))
             return;
-    var taskId = button.getAttribute("taskId");
+    const taskId = button.getAttribute("taskId");
     const data = new URLSearchParams();
     data.append('taskId', taskId);
     fetch("http://localhost:8080/tasks/remove", {

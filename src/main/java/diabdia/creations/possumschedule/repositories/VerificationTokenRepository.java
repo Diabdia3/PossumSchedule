@@ -11,7 +11,8 @@ import java.util.Optional;
 
 public interface VerificationTokenRepository extends CrudRepository<VerificationToken, Integer> {
     Optional<VerificationToken> findByToken(String token);
-
+    @Query(value = "SELECT * FROM verification_token WHERE verification_token.user_id = ?1", nativeQuery = true)
+    Optional<VerificationToken> findByUser(int id);
     @Transactional
     @Modifying
     @Query(value = "DELETE FROM verification_token WHERE verification_token.user_id = ?1", nativeQuery = true)
