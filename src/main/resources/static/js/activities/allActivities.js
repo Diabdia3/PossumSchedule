@@ -11,12 +11,12 @@ window.onload = function(){
         wrappers[cur-1].children[0].classList.add('leftAct');
         document.getElementById("slideLeft").onclick = previous;
     }
-    if(current < wrappers.length-2){
-        setTimeout(function(){
-            wrappers[cur+1].classList.add('rightWrapper');
-            wrappers[cur+1].children[0].classList.add('rightAct');
-            document.getElementById("slideRight").onclick = next;
-        }, 3500);
+    if(current < wrappers.length-3){
+        //setTimeout(function(){
+        wrappers[cur+1].classList.add('rightWrapper');
+        wrappers[cur+1].children[0].classList.add('rightAct');
+        document.getElementById("slideRight").onclick = next;
+        //}, 3500);
     }
 }
 

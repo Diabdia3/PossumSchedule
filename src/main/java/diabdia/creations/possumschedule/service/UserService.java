@@ -4,7 +4,6 @@ import diabdia.creations.possumschedule.entities.User;
 import diabdia.creations.possumschedule.entities.VerificationToken;
 import diabdia.creations.possumschedule.repositories.UserRepository;
 import diabdia.creations.possumschedule.repositories.VerificationTokenRepository;
-import jakarta.servlet.http.HttpSession;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +22,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -35,7 +35,11 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User getUser(String name){
-        return repository.findByName(name).orElseThrow(() -> new UsernameNotFoundException("User " + name + " not found."));
+        return repository.findByName(name).orElseThrow(()-> new UsernameNotFoundException("Unauthenticated or failed to find the user."));
+    }
+
+    public Optional<User> getUserByEmail(String email){
+        return repository.findByEmail(email);
     }
 
     public User registerUser(User user) throws Exception {
@@ -52,14 +56,18 @@ public class UserService {
         return temp;
     }
 
-    public void createVerificationToken(User user, String token){
+    public void createVerificationToken(User user, String token, int minutes){
         tokenRepository.deleteByUser(user.getId());
-        VerificationToken t = new VerificationToken(user, token);
+        VerificationToken t = new VerificationToken(user, token, minutes);
         tokenRepository.save(t);
     }
 
     public VerificationToken getVerificationToken(String token){
         return tokenRepository.findByToken(token).orElse(null);
+    }
+
+    public VerificationToken getVerificationToken(User u){
+        return tokenRepository.findByUser(u.getId()).orElse(null);
     }
 
     public void activateUserAccount(String username){
@@ -87,5 +95,9 @@ public class UserService {
         repository.save(user);
     }
 
+    public void changePassword(String password, User user) {
+        user.setPassword(passwordEncoder.encode(password));
+        repository.save(user);
+    }
 
 }

@@ -10,6 +10,4 @@ public class PossumscheduleApplication {
 		SpringApplication.run(PossumscheduleApplication.class, args);
 	}
 
-	
-
 }
