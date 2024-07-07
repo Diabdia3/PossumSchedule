@@ -39,6 +39,12 @@ public class VerificationToken {
         this.expiryDate = calculateExpiryDate(1440);
     }
 
+    public VerificationToken(User user, String token, int minutesToExpire){
+        this.token = token;
+        this.user = user;
+        this.expiryDate = calculateExpiryDate(minutesToExpire);
+    }
+
     private Date calculateExpiryDate(int expiryTimeInMinutes) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Timestamp(cal.getTime().getTime()));

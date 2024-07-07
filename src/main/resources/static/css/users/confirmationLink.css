@@ -51,3 +51,8 @@ p {
    font-size: 20px;
 }
 
+#result {
+    font-size: 21px;
+    text-align: center;
+    margin-bottom: -20px;
+}

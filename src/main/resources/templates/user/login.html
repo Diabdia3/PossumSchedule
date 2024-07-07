@@ -3,6 +3,7 @@
 <head>
   <title>Login</title>
   <link rel="stylesheet" href="" th:href="@{/css/users/login.css}">
+  <link rel="stylesheet" href="" th:href="@{/css/general/navigation.css}">
 </head>
 <body>
 <div class="container">
@@ -23,10 +24,14 @@
       <div th:if="${param.logout}">
         You have been logged out.
       </div>
+      <div th:if="${param.passwordChange}">
+        &#20;You have successfully changed your password.
+      </div>
       <div class="row button">
         <input type="submit" value="Sign In">
       </div>
       <div class="signup-link"> <a href="http://localhost:8080/signUp">SignUp</a></div>
+      <div class="signup-link"> <a href="http://localhost:8080/getEmail">Forgot password?</a></div>
     </form>
   </div>
 </div>
