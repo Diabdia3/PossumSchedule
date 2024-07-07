@@ -85,16 +85,22 @@ public class ActivityController {
         return ResponseEntity.ok("Activity removed successfully.");
     }
 
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") int id, Model model){
+        Activity activity = activityService.findActivity(id, getUser().getId());
+        model.addAttribute("activity", activity);
+        return "activities/activityEditForm";
+    }
+
     @PostMapping("/edit")
-    public ResponseEntity<String> editActivity(@RequestParam("id") int id, @RequestParam("name") String name, @RequestParam("description") String description,
-                                               @RequestParam("startTime") LocalDateTime startTime, @RequestParam("endTime") LocalDateTime endTime,
-                                               @RequestParam("repetition") Optional<String> repetition, @RequestParam("repetitionDays") Optional<Integer> repetitionDays) {
+    public String editActivity(@ModelAttribute Activity activity, Model model) {
         try{
-            activityService.editActivity(id, getUser().getId(), name, description, startTime, endTime, repetition, repetitionDays);
+            activityService.editActivity(activity, getUser().getId());
         } catch (Exception e){
             e.printStackTrace();
-            return ResponseEntity.status(500).build();
+            model.addAttribute("activity", activity);
+            return "activities/activityEditForm";
         }
-        return ResponseEntity.ok("Activity edited successfully.");
+        return showAll(model);
     }
 }
