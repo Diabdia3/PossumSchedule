@@ -22,7 +22,9 @@
           <button id="previousWeek" class="nbutton" onclick="previousWeek()"><i></i><i></i></button>
           <button id="previousDay" class="nbutton" onclick="previousDay()"><i></i></button>
       </div>
-      <p th:text="${todaysDate}"></p>
+      <p >
+          <input type="date" th:value="${todaysDate}" onclick="showDP(this)" onchange="changeDate(this)">
+      </p>
       <div class="dateNavigation">
           <button id="nextDay" class="nbutton" onclick="nextDay()"><i></i></button>
           <button id="nextWeek" class="nbutton" onclick="nextWeek()"><i></i><i></i></button>
