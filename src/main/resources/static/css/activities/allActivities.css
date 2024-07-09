@@ -174,7 +174,6 @@ body {
   display: inline-block;
   padding: 3px;
   transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
 }
 
 #displayedDate {
@@ -183,13 +182,17 @@ body {
     justify-content: center;
 }
 
-#displayedDate p{
+#displayedDate input{
     font-family: 'Brush Script MT', cursive;
     color: #e7d69c;
     text-shadow: -3px -2px #9c4a1a;
     font-size: 30px;
     text-align: center;
-    margin-bottom: 0px;
+    margin: 10px -40px 0 -10px;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
 }
 
 #no-activities {
@@ -226,8 +229,14 @@ body {
     margin-top: 5px;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+#nextDay i {
+    transform: rotate(-45deg);
+}
+
+#nextWeek i {
+    transform: rotate(-45deg);
 }

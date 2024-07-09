@@ -83,11 +83,11 @@ public class ActivityService {
 
     public String todayToString(){
         return LocalDate.now()
-                .format(DateTimeFormatter.ofPattern("EEEE dd-MM-yyyy", Locale.ENGLISH));
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH));
     }
 
     public String dateToString(LocalDate date ){
-        return date.format(DateTimeFormatter.ofPattern("EEEE dd-MM-yyyy", Locale.ENGLISH));
+        return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH));
     }
 
     public int getCurrentIndex(List<Activity> activities){
