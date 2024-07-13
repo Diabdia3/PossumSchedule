@@ -39,6 +39,8 @@
                     <option th:selected="${activity.repetitionToString} == 'custom'" value="custom">Custom</option>
                     <option th:selected="${activity.repetitionToString} == 'daily'" value="daily">Daily</option>
                     <option th:selected="${activity.repetitionToString} == 'weekly'" value="weekly">Weekly</option>
+                    <option th:selected="${activity.repetitionToString} == 'monthly'" value="monthly">Monthly</option>
+                    <option th:selected="${activity.repetitionToString} == 'annual'" value="annual">Annual</option>
                 </select>
                 <p id="repetitionDaysWrapper" style="display: none">Number of days: <input value="1" type="number" min="1" max="999" name="repetitionDays" id="repetitionDays"></p>
                 <p class="activityDesc">

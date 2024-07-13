@@ -132,7 +132,7 @@ public class UserController {
     @GetMapping("/userInfo")
     public String userInfo(Model model){
         model.addAttribute("user", getUser());
-        //model.addAttribute("stats", new Stats(getUser().getId()));
+        model.addAttribute("stats", userService.getStats(getUser().getId()));
         return "user/userInfo";
     }
 

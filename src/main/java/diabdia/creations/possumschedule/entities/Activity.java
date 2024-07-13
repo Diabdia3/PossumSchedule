@@ -40,6 +40,15 @@ public class Activity {
         this.endTime = endTime;
     }
 
+    public Activity(Activity a){
+        this.name = a.getName();
+        this.description = a.getDescription();
+        this. startTime = a.getStartTime();
+        this.endTime = a.getEndTime();
+        this.repetition = a.getRepetition();
+        this.user = a.getUser();
+    }
+
     public long getDuration(){
         return Math.abs(ChronoUnit.MINUTES.between(this.startTime, this.endTime));
     }

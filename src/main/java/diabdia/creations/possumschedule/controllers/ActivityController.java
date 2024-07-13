@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -40,6 +42,7 @@ public class ActivityController {
         model.addAttribute("current", activityService.getCurrentIndex(activities));
         model.addAttribute("today", LocalDate.now());
         model.addAttribute("todaysDate", activityService.todayToString());
+        model.addAttribute("dayOfTheWeek", LocalDate.now().getDayOfWeek().name().substring(0, 3));
         return "activities/allActivities";
     }
 
@@ -50,6 +53,7 @@ public class ActivityController {
         model.addAttribute("today", date);
         model.addAttribute("current", activityService.getCurrentIndex(activities));
         model.addAttribute("todaysDate", activityService.dateToString(date));
+        model.addAttribute("dayOfTheWeek", date.getDayOfWeek().name().substring(0, 3));
         return "activities/allActivities";
     }
 

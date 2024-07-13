@@ -15,20 +15,22 @@ body {
 #slideLeft {
     position: absolute;
     top: 190px;
-    left: 410px;
+    left: 50%;
+    margin-left: -350px;
     display: block;
-    height: 390px;
-    width: 112px;
+    height: 394px;
+    width: 100px;
 }
 
 #slideRight {
     position: absolute;
     top: 190px;
-    right: 410px;
+    right: 50%;
+    margin-right: -350px;
     display: block;
     z-index: -1;
-    height: 390px;
-    width: 112px;
+    height: 394px;
+    width: 100px;
 }
 
 .activity {
@@ -92,7 +94,8 @@ body {
     overflow: hidden;
     position: absolute;
     top: 175px;
-    right: 830px;
+    left: 50%;
+    margin-left: -350px;
     display: block;
 }
 
@@ -111,12 +114,18 @@ body {
     left: -60px;
 }
 
+.leftAct div.activityRepetition {
+    display: none;
+}
+
+
 .rightWrapper {
     overflow: hidden;
     z-index: -1;
     position: absolute;
     top: 175px;
-    left: 830px;
+    right: 50%;
+    margin-right: -350px;
     display: block;
 }
 
@@ -143,6 +152,10 @@ body {
 .rightAct p.activityDesc {
     position: relative;
     right: 180px;
+}
+
+.rightAct div.activityRepetition {
+    margin-right: 5px;
 }
 
 #editButtons {
@@ -188,11 +201,20 @@ body {
     text-shadow: -3px -2px #9c4a1a;
     font-size: 30px;
     text-align: center;
-    margin: 10px -40px 0 -10px;
+    margin: 10px -60px 0 -10px;
     background: transparent;
     border: none;
     outline: none;
     resize: none;
+}
+
+#dayOfTheWeek {
+    font-family: 'Brush Script MT', cursive;
+    color: #e7d69c;
+    text-shadow: -3px -2px #9c4a1a;
+    font-size: 30px;
+    text-align: center;
+    margin: 26px 0 0 0;
 }
 
 #no-activities {
@@ -210,7 +232,7 @@ body {
 
 .activityRepetition {
     position: absolute;
-    right: 0;
+    right: 20px;
     bottom: 5px;
     display: flex;
     align-items: center;
@@ -222,6 +244,7 @@ body {
     font-size: 18px;
     width: 50px;
     z-index: 2;
+    margin-left: 5px;
 }
 
 .activityRepetition i {

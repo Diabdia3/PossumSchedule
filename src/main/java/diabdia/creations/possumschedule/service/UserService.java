@@ -2,8 +2,14 @@ package diabdia.creations.possumschedule.service;
 
 import diabdia.creations.possumschedule.entities.User;
 import diabdia.creations.possumschedule.entities.VerificationToken;
+import diabdia.creations.possumschedule.repositories.ActivityRepository;
+import diabdia.creations.possumschedule.repositories.TaskRepository;
 import diabdia.creations.possumschedule.repositories.UserRepository;
 import diabdia.creations.possumschedule.repositories.VerificationTokenRepository;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,6 +34,11 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     UserRepository repository;
+    @Autowired
+    ActivityRepository activityRepository;
+    @Autowired
+    TaskRepository taskRepository;
+
     @Autowired
     VerificationTokenRepository tokenRepository;
 
@@ -100,4 +111,27 @@ public class UserService {
         repository.save(user);
     }
 
+    public Stats getStats(int userId){
+        Stats stats = new Stats();
+        stats.setOngoingTasks(taskRepository.getUnfinishedTasksCount(userId));
+        stats.setTotalTasks(taskRepository.getTasksCount(userId));
+        stats.setActivitiesThisWeek(activityRepository.getAllWeeklyActivitiesCount(userId));
+        stats.setRemainingWeeklyActivities(activityRepository.getRemainingWeeklyActivitiesCount(userId));
+        stats.setActivitiesThisMonth(activityRepository.getAllMonthlyActivitiesCound(userId));
+        stats.setRemainingMonthlyActivities(activityRepository.getRemainingMonthlyActivitiesCount(userId));
+        return new Stats();
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    private class Stats {
+        private int totalTasks;
+        private int ongoingTasks;
+        private int activitiesThisWeek;
+        private int remainingWeeklyActivities;
+        private int activitiesThisMonth;
+        private int remainingMonthlyActivities;
+    }
 }
