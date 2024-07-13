@@ -19,12 +19,6 @@ public interface TaskRepository extends CrudRepository<Task, Integer> {
     @Query(value = "SELECT * FROM task WHERE task.user_id = ?1 AND task.completed = 1 ORDER BY task.priority", nativeQuery = true)
     List<Task> findAllCompletedByUserIdSortByPriority(int userId);
 
-    @Query(value = "SELECT COUNT(id) FROM task WHERE task.user_id = ?1 AND completed = 0", nativeQuery = true)
-    Integer getUnfinishedTasksCount(int userId);
-
-    @Query(value = "SELECT COUNT(id) FROM task WHERE task.user_id = ?1", nativeQuery = true)
-    Integer getTasksCount(int userId);
-
     @Transactional
     @Modifying
     @Query(value = "UPDATE task SET completed = 1 WHERE task.id = ?1", nativeQuery = true)

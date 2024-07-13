@@ -34,10 +34,6 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     UserRepository repository;
-    @Autowired
-    ActivityRepository activityRepository;
-    @Autowired
-    TaskRepository taskRepository;
 
     @Autowired
     VerificationTokenRepository tokenRepository;
@@ -93,45 +89,9 @@ public class UserService {
 
     }
 
-    public void updateProfilePicture(MultipartFile file, User user) throws IOException {
-        InputStream initialStream = file.getInputStream();
-        byte[] buffer = new byte[initialStream.available()];
-        initialStream.read(buffer);
-        String fileName = user.getId() + "picture" + "." + FilenameUtils.getExtension(file.getOriginalFilename());
-        File targetFile = new File("src/main/resources/static/image/profilePicture/" + fileName);
-        OutputStream outStream = new FileOutputStream(targetFile);
-        outStream.write(buffer);
-        outStream.close();
-        user.setProfilePicture(fileName);
-        repository.save(user);
-    }
-
     public void changePassword(String password, User user) {
         user.setPassword(passwordEncoder.encode(password));
         repository.save(user);
     }
 
-    public Stats getStats(int userId){
-        Stats stats = new Stats();
-        stats.setOngoingTasks(taskRepository.getUnfinishedTasksCount(userId));
-        stats.setTotalTasks(taskRepository.getTasksCount(userId));
-        stats.setActivitiesThisWeek(activityRepository.getAllWeeklyActivitiesCount(userId));
-        stats.setRemainingWeeklyActivities(activityRepository.getRemainingWeeklyActivitiesCount(userId));
-        stats.setActivitiesThisMonth(activityRepository.getAllMonthlyActivitiesCound(userId));
-        stats.setRemainingMonthlyActivities(activityRepository.getRemainingMonthlyActivitiesCount(userId));
-        return new Stats();
-    }
-
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    private class Stats {
-        private int totalTasks;
-        private int ongoingTasks;
-        private int activitiesThisWeek;
-        private int remainingWeeklyActivities;
-        private int activitiesThisMonth;
-        private int remainingMonthlyActivities;
-    }
 }
