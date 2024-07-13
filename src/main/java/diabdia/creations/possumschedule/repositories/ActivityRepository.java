@@ -36,20 +36,6 @@ public interface ActivityRepository extends CrudRepository<Activity, Integer> {
     @Query(value = "SELECT * FROM activity WHERE activity.user_id = ?1", nativeQuery = true)
     List<Activity> findAllByUserId(int userId);
 
-    @Query(value="SELECT COUNT(id) FROM activity WHERE activity.user_id = ?1 AND activity.start_time >= (SELECT DATE_ADD(CURDATE(), interval  -WEEKDAY(CURDATE()) day)) AND activity.start_time <= (DATE_ADD(DATE_ADD(CURDATE(), interval  -WEEKDAY(CURDATE()) day), interval 6 day));", nativeQuery = true)
-    Integer getAllWeeklyActivitiesCount(int userId);
-
-    @Query(value = "SELECT COUNT(id) FROM activity WHERE activity.user_id = ?1 AND activity.start_time >= (SELECT DATE_ADD(CURDATE(), interval  -WEEKDAY(CURDATE()) day)) AND activity.start_time <= (DATE_ADD(DATE_ADD(CURDATE(), interval  -WEEKDAY(CURDATE()) day), interval 6 day));",nativeQuery = true)
-    Integer getAllMonthlyActivitiesCound(int userId);
-
-    @Query(value="SELECT COUNT(id) FROM activity WHERE activity.user_id = ?1 AND activity.start_time >= CURDATE() AND activity.start_time <= (DATE_ADD(DATE_ADD(CURDATE(), interval  -WEEKDAY(CURDATE()) day), interval 6 day));",
-            nativeQuery = true)
-    Integer getRemainingWeeklyActivitiesCount(int userId);
-
-    @Query(value="SELECT COUNT(id) FROM activity WHERE activity.user_id = ?1 AND activity.start_time >= CURDATE() AND activity.start_time <= (DATE_ADD(DATE_ADD(CURDATE(), interval  -WEEKDAY(CURDATE()) day), interval 6 day));",
-            nativeQuery = true)
-    Integer getRemainingMonthlyActivitiesCount(int userId);
-
     @Modifying
     @Query(value = "DELETE FROM activity WHERE repetition_rule_id IS NULL AND activity.start_time < (NOW() - INTERVAL 14 DAY)", nativeQuery = true)
     void deleteActivitiesFromTwoWeeksAgo();

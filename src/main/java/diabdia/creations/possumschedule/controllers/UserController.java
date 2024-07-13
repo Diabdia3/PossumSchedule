@@ -110,7 +110,7 @@ public class UserController {
         }
         String username = verificationToken.getUser().getName();
         userService.activateUserAccount(username);
-        return userInfo(model);
+        return "redirect:/tasks/all";
     }
 
     private void loginUser(User user){
@@ -127,25 +127,6 @@ public class UserController {
         } catch (ServletException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @GetMapping("/userInfo")
-    public String userInfo(Model model){
-        model.addAttribute("user", getUser());
-        model.addAttribute("stats", userService.getStats(getUser().getId()));
-        return "user/userInfo";
-    }
-
-    @PostMapping("/updateProfilePicture")
-    @ResponseBody
-    public ResponseEntity<String> updateProfilePicture(@RequestParam("image") MultipartFile file){
-        try {
-            userService.updateProfilePicture(file, getUser());
-        } catch (Exception e){
-            e.printStackTrace();
-            return ResponseEntity.status(500).build();
-        }
-        return ResponseEntity.ok("Image updated successfully.");
     }
 
 
