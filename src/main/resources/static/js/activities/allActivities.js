@@ -136,3 +136,16 @@ function edit() {
 function hideError(){
     document.getElementById("invalidDate").style.display = 'none';
 }
+
+function showDP(picker){
+    picker.showPicker();
+}
+
+function showDP(){
+    document.getElementById("displayedDate").children[2].children[0].showPicker();
+}
+
+function changeDate(picker){
+      var selectedDate = picker.value;
+      window.location.replace("http://localhost:8080/a/activities/" + selectedDate);
+}
