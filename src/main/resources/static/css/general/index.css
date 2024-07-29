@@ -4,13 +4,21 @@ body {
 
 #login-box {
     position: fixed;
-    right: 0px;
+    right: 20px;
     top: 0px;
     padding: 10px;
     z-index: 1;
 }
 
+#login-box button {
+    width: 130px;
+    height: 60px;
+    font-size: 20px;
+}
+
 #login-box p {
+    position: relative;
+    top: 5px;
     display: inline;
     font-family: 'Brush Script MT', cursive;
     color: #e4d6ce;
@@ -20,14 +28,6 @@ body {
 #login-box button {
     width: 110px;
     display: inline;
-}
-
-#main-content {
-
-}
-
-#introduction {
-
 }
 
 #possum {
@@ -54,7 +54,12 @@ body {
 }
 
 #name-img {
-
+    position: relative;
+    left: 60px;
+    top: 40px;
+    margin-top: -50px;
+    height: 187px;
+    width: 402px;
 }
 
 #name-desk {
@@ -65,10 +70,6 @@ body {
     font-family: 'Brush Script MT', cursive;
     color: #ebcf8a;
     font-size: 40px;
-}
-
-#description {
-
 }
 
 #task-desk {
@@ -96,4 +97,18 @@ body {
     color: #ebcf8a;
     font-size: 30px;
     margin-right: 20px;
+}
+
+#afterword {
+    position: absolute;
+    left: 50%;
+}
+
+#afterword p {
+    position: relative;
+    left: -40%;
+    margin-top: 50px;
+    font-family: 'Brush Script MT', cursive;
+    color: #ebcf8a;
+    font-size: 25px;
 }

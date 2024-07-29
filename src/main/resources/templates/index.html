@@ -9,21 +9,21 @@
 <div id="login-box" sec:authorize="isAnonymous()">
     <button class="nbutton" onclick="location.href = 'http://localhost:8080/login';">Login</button>
     <p>or</p>
-    <button class="nbutton" onclick="location.href = 'http://localhost:8080/signUp';">Sign Up</button>
+    <button class="nbutton" onclick="location.href = 'http://localhost:8080/signUp';" style="padding-right: 100px;">Sign Up</button>
 </div>
 <div id="login-box" sec:authorize="isAuthenticated()">
     <button class="nbutton" onclick="location.href = 'http://localhost:8080/tasks/all';">Tasks</button>
     <button class="nbutton" onclick="location.href = 'http://localhost:8080/a/activities';">Activities</button>
 </div>
-<div id="main-content">
-    <div id="introduction">
+<div>
+    <div>
         <p id="possum">Possum</p>
-        <img id="name-img" src="">
+        <img id="name-img" src="/image/icon.png">
         <br>
         <p id="schedule">Schedule</p>
         <p id="name-desk">- online tool to plan your day!<br>Create long-term tasks or divide your day into temporary activities.</p>
     </div>
-    <div id="description">
+    <div>
         <p id="task-desk"><img id="task-img" src="/image/tasks-example.png">
             &nbsp&nbsp&nbsp&nbspMake plans by creating Tasks. There is no need to keep everything in
             your head, so write down all that you want to do! Be it a hobby, travelling plan or career
@@ -42,6 +42,7 @@
             you can create repeating activities that will appear on your daily schedule to remind you of your chores.</p>
     </div>
     <div id="afterword">
+        <p>possumschedule@gmail.com</p>
     </div>
 </div>
 </body>

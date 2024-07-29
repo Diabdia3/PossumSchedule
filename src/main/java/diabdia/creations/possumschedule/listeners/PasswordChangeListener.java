@@ -33,8 +33,32 @@ public class PasswordChangeListener implements ApplicationListener<OnPasswordCha
         String recipientAddress = user.getEmail();
         String subject = "Password Change Confirmation";
         String confirmationUrl = event.getAppUrl() + "http://localhost:8080/passwordChange?token=" + token;
-        String message = "Please, confirm that you want to change your password by following the link below:\n" + confirmationUrl;
+        String text = "Please, follow the link below if you want to change your password:\n" + confirmationUrl;
+        String html = formMessage(confirmationUrl);
 
-        emailService.sendEmail(recipientAddress, subject, message);
+        emailService.sendEmail(recipientAddress, subject, text, html);
+    }
+
+    private String formMessage(String url){
+        String msg = """
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                </head>
+                <body style="background: #9A7EA6;">
+                	<div style="">
+                		<h2 style="font-family: 'Brush Script MT', cursive; color: #ebcf8a; font-size: 30px;">Password Change Confirmation</h2>
+                		<p style="font-family: 'Brush Script MT', cursive; color: #ebcf8a; font-size: 20px;">Please, click the link below if you want to change your password:</p>
+                		<a style="font-family: 'Brush Script MT', cursive; color: #ebcf8a; font-size: 20px;" href=" 
+                """;
+        msg+=url;
+        msg+= """
+                ">Change password</a>
+                	</div>
+                </body>
+                </html>
+                """;
+        return msg;
     }
 }

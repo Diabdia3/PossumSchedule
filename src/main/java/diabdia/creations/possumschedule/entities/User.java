@@ -53,6 +53,12 @@ public class User implements UserDetails {
         this.registration = registration;
     }
 
+    public User(String name, String password, Role role){
+        this.name = name;
+        this.password = password;
+        this.role = role;
+    }
+
     public String getProfilePicture(){
         return Objects.requireNonNullElse(profilePicture, "250.png");
     }
