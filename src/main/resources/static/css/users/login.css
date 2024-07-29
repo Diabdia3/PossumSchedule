@@ -16,7 +16,7 @@ body{
 .container{
   max-width: 440px;
   padding: 0 20px;
-  margin: 170px auto;
+  margin: 140px auto;
 }
 
 .wrapper{
@@ -100,10 +100,25 @@ form .button input:hover{
   margin-top: 20px;
   font-size: 17px;
 }
+
 .wrapper form .signup-link a{
   color: #42373D;
   text-decoration: none;
 }
+
 form .signup-link a:hover{
   text-decoration: underline;
+}
+
+#rememberMe {
+    margin: 0px 110px 8px;
+}
+
+#rememberMe p {
+    display: inline;
+}
+
+.errorMsg {
+    margin-bottom: 8px;
+    width: 350px;
 }

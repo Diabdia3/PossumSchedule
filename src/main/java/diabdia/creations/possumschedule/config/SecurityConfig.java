@@ -1,5 +1,6 @@
 package diabdia.creations.possumschedule.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +16,8 @@ import static jakarta.servlet.DispatcherType.FORWARD;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    @Value("${rememberMe.key}")
+    private String rememberMeKey;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -31,9 +34,11 @@ public class SecurityConfig {
                 ).formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll())
+                .rememberMe( rememberMe -> rememberMe.key(rememberMeKey).tokenValiditySeconds(86400))
                 .logout((logout) -> logout.addLogoutHandler(clearSiteData));
 
         return http.build();
     }
+
 
 }

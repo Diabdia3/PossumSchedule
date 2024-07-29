@@ -2,15 +2,8 @@ package diabdia.creations.possumschedule.service;
 
 import diabdia.creations.possumschedule.entities.User;
 import diabdia.creations.possumschedule.entities.VerificationToken;
-import diabdia.creations.possumschedule.repositories.ActivityRepository;
-import diabdia.creations.possumschedule.repositories.TaskRepository;
 import diabdia.creations.possumschedule.repositories.UserRepository;
 import diabdia.creations.possumschedule.repositories.VerificationTokenRepository;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,9 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
